@@ -1,0 +1,101 @@
+schema: '2.0'
+stages:
+  data_split:
+    cmd: python src/stages/data_split.py --config=params.yaml
+    deps:
+    - path: data/raw
+      md5: f2c7448614b9ec3d9e7e25dac874171f.dir
+      size: 150828752
+      nfiles: 1
+    - path: src/stages/data_split.py
+      md5: cd55c8a280734ab6819bd4d80788f8a5
+      size: 1603
+    params:
+      params.yaml:
+        base:
+          project: credit_card_fraud_detection
+          data_path: data/raw
+          data_file: creditcard.csv
+          data_processed_path: data/processed
+          exclude_cols:
+          - Time
+          target_col: Class
+          random_state: 42
+        data_split:
+          test_size: 0.2
+          processed_path: data/processed
+    outs:
+    - path: data/processed
+      md5: 0924010ed1a9777b1cbc8d502e3a87e1.dir
+      size: 148417072
+      nfiles: 4
+  train:
+    cmd: python src/stages/train.py --config=params.yaml
+    deps:
+    - path: data/processed
+      md5: 0924010ed1a9777b1cbc8d502e3a87e1.dir
+      size: 148417072
+      nfiles: 4
+    - path: src/stages/train.py
+      md5: ead8f103698c092caa098f94fb481a7b
+      size: 1401
+    params:
+      params.yaml:
+        base:
+          project: credit_card_fraud_detection
+          data_path: data/raw
+          data_file: creditcard.csv
+          data_processed_path: data/processed
+          exclude_cols:
+          - Time
+          target_col: Class
+          random_state: 42
+        train:
+          model_type: rf
+          model_dir: models
+          model_path: models/model.joblib
+          params:
+            n_estimators: 100
+            max_depth: 10
+    outs:
+    - path: models/model.joblib
+      md5: 57afdbb5c8b5b4c0fc60847339f5ffd0
+      size: 939369
+  eval:
+    cmd: python src/stages/eval.py --config=params.yaml
+    deps:
+    - path: data/processed
+      md5: 0924010ed1a9777b1cbc8d502e3a87e1.dir
+      size: 148417072
+      nfiles: 4
+    - path: models/model.joblib
+      md5: 57afdbb5c8b5b4c0fc60847339f5ffd0
+      size: 939369
+    - path: src/stages/eval.py
+      md5: 8524f802ce5ea29fd2ac711326f746ba
+      size: 1148
+    params:
+      params.yaml:
+        base:
+          project: credit_card_fraud_detection
+          data_path: data/raw
+          data_file: creditcard.csv
+          data_processed_path: data/processed
+          exclude_cols:
+          - Time
+          target_col: Class
+          random_state: 42
+        data_split:
+          test_size: 0.2
+          processed_path: data/processed
+        train:
+          model_type: rf
+          model_dir: models
+          model_path: models/model.joblib
+          params:
+            n_estimators: 100
+            max_depth: 10
+    outs:
+    - path: metrics.json
+      md5: 79de82738c4564fcfd7c42053f5049f2
+      size: 93

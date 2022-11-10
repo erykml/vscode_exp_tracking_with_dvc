@@ -1,0 +1,21 @@
+base:
+  project: credit_card_fraud_detection
+  data_path: data/raw
+  data_file: creditcard.csv
+  data_processed_path: data/processed
+  exclude_cols:
+  - Time
+  target_col: Class
+  random_state: 42
+
+data_split:
+  test_size: 0.2
+  processed_path: data/processed
+
+train:
+  model_type: rf
+  model_dir: models
+  model_path: models/model.joblib
+  params:
+    n_estimators: 100
+    max_depth: 10
