@@ -66,6 +66,7 @@ pygit2==1.11.1
 Pygments==2.13.0
 pygtrie==2.5.0
 pyparsing==3.0.9
+python-box==6.1.0
 python-dateutil==2.8.2
 pytz==2022.6
 PyYAML==6.0
