@@ -7,7 +7,9 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from src.utils.params import load_params
 
-
+from dvclive import Live
+from dvclive.lgbm import DVCLiveCallback
+        
 def train(data_path, model_type, model_path, random_state, **train_params):
 
     # load training data
@@ -17,13 +19,20 @@ def train(data_path, model_type, model_path, random_state, **train_params):
     # pick the model
     if model_type == "rf":
         model = RandomForestClassifier(random_state=random_state, **train_params)
+        model.fit(X_train, y_train)
     elif model_type == "lgbm":
+        
+        live = Live("custom_dir")
         model = LGBMClassifier(random_state=random_state, **train_params)
+        model.fit(X_train, y_train, callbacks=[DVCLiveCallback(live=live)])
+        
+        # Log additional metrics after training
+        live.summary["additional_metric"] = 1.0
+        live.make_summary()
     else:
         raise ValueError("Unsupported model_type!")
 
     # trains the model and store it
-    model.fit(X_train, y_train)
     dump(model, model_path)
 
 

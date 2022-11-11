@@ -13,9 +13,9 @@ data_split:
   processed_path: data/processed
 
 train:
-  model_type: rf
+  model_type: lgbm
   model_dir: models
   model_path: models/model.joblib
   params:
-    n_estimators: 200
+    n_estimators: 500
     max_depth: 10
