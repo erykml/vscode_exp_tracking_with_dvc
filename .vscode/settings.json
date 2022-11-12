@@ -1,3 +1,3 @@
 {
-    "python.envFile": "${workspaceFolder}/.env"
+    "dvc.pythonPath": "/opt/homebrew/Caskroom/miniforge/base/envs/dvc_test_2/bin/python"
 }

@@ -55,13 +55,13 @@ stages:
           model_dir: models
           model_path: models/model.joblib
           params:
-            n_estimators: 200
+            n_estimators: 100
             max_depth: 10
-            class_weight: balanced
+            class_weight:
     outs:
     - path: models/model.joblib
-      md5: 334493e101d95b8a4935bfc0f4ad670c
-      size: 3186809
+      md5: 57afdbb5c8b5b4c0fc60847339f5ffd0
+      size: 939369
   eval:
     cmd: python src/stages/eval.py --config=params.yaml
     deps:
@@ -70,8 +70,8 @@ stages:
       size: 148417072
       nfiles: 4
     - path: models/model.joblib
-      md5: 334493e101d95b8a4935bfc0f4ad670c
-      size: 3186809
+      md5: 57afdbb5c8b5b4c0fc60847339f5ffd0
+      size: 939369
     - path: src/stages/eval.py
       md5: 406e3889d64a9cc62ec917197a93d009
       size: 1149
@@ -94,10 +94,10 @@ stages:
           model_dir: models
           model_path: models/model.joblib
           params:
-            n_estimators: 200
+            n_estimators: 100
             max_depth: 10
-            class_weight: balanced
+            class_weight:
     outs:
     - path: metrics.json
-      md5: 4f11d02fbcdb376cee7cc4b667b22b72
-      size: 109
+      md5: fac4b5cc45525ff53c334f3a347de996
+      size: 94
