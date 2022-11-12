@@ -18,4 +18,5 @@ train:
   model_path: models/model.joblib
   params:
     n_estimators: 100
-    max_depth: 10
+    max_depth: 20
+    class_weight: balanced

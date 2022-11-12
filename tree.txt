@@ -1,0 +1,31 @@
+📦vscode_exp_tracking_with_dvc
+ ┣ 📂.dvc
+ ┣ 📂data
+ ┃ ┣ 📂processed
+ ┃ ┃ ┣ 📜X_test.csv
+ ┃ ┃ ┣ 📜X_train.csv
+ ┃ ┃ ┣ 📜y_test.csv
+ ┃ ┃ ┗ 📜y_train.csv
+ ┃ ┣ 📂raw
+ ┃ ┃ ┗ 📜creditcard.csv
+ ┃ ┣ 📜.gitignore
+ ┃ ┗ 📜raw.dvc
+ ┣ 📂models
+ ┃ ┗ 📜model.joblib
+ ┣ 📂src
+ ┃ ┣ 📂stages
+ ┃ ┃ ┣ 📜data_split.py
+ ┃ ┃ ┣ 📜eval.py
+ ┃ ┃ ┗ 📜train.py
+ ┃ ┗ 📂utils
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┗ 📜params.py
+ ┣ 📜.dvcignore
+ ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜README.md
+ ┣ 📜dvc.lock
+ ┣ 📜dvc.yaml
+ ┣ 📜metrics.json
+ ┣ 📜params.yaml
+ ┗ 📜requirements.txt
