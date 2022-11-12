@@ -1,3 +1,5 @@
+# the structure of the project
+
 📦vscode_exp_tracking_with_dvc
  ┣ 📂.dvc
  ┣ 📂data
